@@ -7,17 +7,6 @@ PARAMS = {
     "PASSWORD": getenv("PASSWORD", ""),
     "KEYSPACE": getenv("KEYSPACE", ""),
     "TABLE_NAME": getenv("TABLE_NAME", ""),
-    "COLUMNS": getenv("COLUMNS", ""),
-    "LABELS": getenv("LABELS", ""),
+    "COLUMNS": "(" + ",".join([c.strip() for c in getenv("COLUMNS", "").split(",")]) + ")",
+    "LABELS": [label.strip() for label in getenv("LABELS", "").split(',')]
 }
-
-# parse columns and labels
-if PARAMS['COLUMNS']:
-    PARAMS['COLUMNS'] = [header.strip() for header in PARAMS['COLUMNS'].split(',')]
-else:
-    PARAMS['COLUMNS'] = None
-
-if PARAMS['LABELS']:
-    PARAMS['LABELS'] = [label.strip() for label in PARAMS['LABELS'].split(',')]
-else:
-    PARAMS['LABELS'] = None
