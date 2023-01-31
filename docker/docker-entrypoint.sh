@@ -28,5 +28,9 @@ else
 fi
 echo "[ENTRYPOINT] Environment validated."
 
+# Validate other environment variables
+: "${COLUMNS:?Need to provide database Columns in module configuration pane in weeve IoT Platform.}"
+: "${LABELS:?Need to provide data Labels in module configuration pane in weeve IoT Platform.}"
+
 # CALL THE MAIN SCRIPT
 python /app/src/main.py
