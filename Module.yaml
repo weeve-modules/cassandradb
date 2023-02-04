@@ -1,6 +1,6 @@
 displayName: 'CassandraDB'
 moduleName: 'cassandradb'
-description: 'This is module boilerplate description.'
+description: 'Use REST API to write data to your Apache CassandraDB'
 versionName: 'v1.0.0'
 isPublic: true
 categories:
