@@ -15,6 +15,7 @@
   - [Dependencies](#dependencies)
   - [Input](#input)
   - [Output](#output)
+  - [Testing](#testing)
 
 ## Description
 
@@ -87,3 +88,7 @@ Input to this module is:
 ## Output
 
 Output of this module are records written to the selected Apache Cassandra database table.
+
+## Testing
+
+To test the module see [test](https://github.com/weeve-modules/cassandradb/tree/main/test) directory.

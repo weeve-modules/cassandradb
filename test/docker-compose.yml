@@ -1,0 +1,41 @@
+version: "3"
+services:
+  cassandra:
+    image: cassandra:latest
+    ports:
+      - 9042:9042
+
+  cassandra-setup:
+    image: cassandra-setup:latest
+    command: bash -c 'sleep 30 && python setup.py'
+    depends_on:
+      - cassandra
+    environment:
+      USERNAME: "admin"
+      PASSWORD: "password0"
+      HOST: "cassandra"
+      PORT: "9042"
+      KEYSPACE: "testing"
+      TABLE_NAME: "temp_data"
+
+  weeve-cassandradb:
+    image: weevenetwork/cassandradb:latest
+    depends_on:
+      - cassandra
+      - cassandra-setup
+    environment:
+      MODULE_NAME: "cassandradb"
+      MODULE_TYPE: "Output"
+      INGRESS_HOST: "0.0.0.0"
+      INGRESS_PORT: "80"
+      LOG_LEVEL: "DEBUG"
+      HOST: "cassandra"
+      PORT: "9042"
+      USERNAME: "admin"
+      PASSWORD: "password0"
+      KEYSPACE: "testing"
+      TABLE_NAME: "temp_data"
+      COLUMNS: "measurement_id, temperature, location"
+      LABELS: "measurement_id, filterTemp, sensorLocation"
+    ports:
+      - 80:80
